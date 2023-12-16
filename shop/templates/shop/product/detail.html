@@ -1,0 +1,23 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="product-detail">
+        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+        <h1>{{ product.name }}</h1>
+        <h2>
+            <a href="{{ product.category.get_absolute_url }}">
+                {{ product.category }}
+            </a>
+        </h2>
+        <p class="price">Ksh{{ product.price }}</p>
+        {{ product.description|linebreaks }}
+        <hr>
+        <!-- <a href="https://wa.me/+254721444655?text=I%20want%20to%20order%20{{ product.name }}" class="whatsapp-button" target="blank">Order via WhatsApp</a> -->
+        <a href="https://wa.me/+254721444655?text=Hi,%20I%20want%20to%20order%20{{ product.name }}%20-%20{{ product.price }}" class="whatsapp-button" target="blank">Order via WhatsApp</a>
+    </div>
+{% endblock %}
